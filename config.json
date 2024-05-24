@@ -1,0 +1,23 @@
+[
+  {
+    "inc_name":"DMZ_host_attack",
+    "siem_filter_row":["time","src.ip","dst.ip","object.name","text"],
+    "custom_fields":[{"type":"string","hive_name":"src-ip","siem_name":"src.ip"},{"type":"string","hive_name":"dst-ip","siem_name":"dst.ip"},{"type":"date","hive_name":"eventtime","siem_name":"time"},{"type":"string","hive_name":"discovered","value":"СОВ Vipnet IDS"}],
+    "case_description_template":{"name":"Время: {}\n\n Источник: {}\n\n Назначение: {}\n\n Сигнатура: {}\n\n Описание инцидента:","args":["time","src.ip","dst.ip","object.name"]},
+    "case_template":{"name":"BAD-SCAN","args":[]},"case_name_template":{"name":"{} -> {}","args":["src.ip","dst.ip"]},
+    "case_tags":["Инцидент","Сканирование","Автоматическая_регистрация"],
+    "task_name_template":{"name":"BAD-SCAN - {} -> {}","args":["src.ip","dst.ip"]},
+    "analyst_email":"test@test.com"
+  },
+  {
+    "inc_name":"Malware_Detect_And_Not_Clean",
+    "siem_filter_row":["time","dst.host","subject.account.name","object.storage.fullpath","text"],
+    "custom_fields":[{"type":"string","hive_name":"src-ip","siem_name":"dst.host"},{"type":"date","hive_name":"eventtime","siem_name":"time"},{"type":"string","hive_name":"discovered","value":"Kaspersky Security"}],
+    "case_description_template":{"name":"Время: {}\n\n Источник: {}\n\n Учетная запись: {}\n\nВредоносный объект: {}\n\n Описание инцидента: {}","args":["time","dst.host","subject.account.name","object.storage.fullpath","text"]},
+    "case_template":{"name":"Вирусы","args":[]},
+    "case_name_template":{"name":"Обнаружен вирус на узле {} - {}","args":["dst.host","object.storage.fullpath"]},
+    "case_tags":["Вирусы", "Инцидент","Автоматическая_регистрация"],
+    "task_name_template":{"name":"Вирусы - Обнаружен вирус на узле {} - {}","args":["dst.host","object.storage.fullpath"]},
+    "analyst_email":"test@test.com"
+  }
+]
